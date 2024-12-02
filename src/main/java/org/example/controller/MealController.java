@@ -40,7 +40,7 @@ public class MealController {
     }
 
     /**
-     * Controller to handle client/API calls and manage views. Also serves to cache recipies.... mayb wanna make this a diff class
+     * Controller to handle client/API calls and manage views.
      */
     static {
         try {
@@ -68,7 +68,6 @@ public class MealController {
             List<Recipe> recipies = client.findRecipesByIngredients(selectedIngredients, 2, 6);
             recipies.forEach(recipe -> {
                 try {
-                    //doing this cuz recipe is immutable
                     Recipe recipeNutrition = client.getRecipeNutrition(recipe.id());
                     Recipe updatedRecipie = new Recipe(recipe.id(), recipe.title(), recipe.image(), recipeNutrition.nutrition(), recipe.usedIngredients(), recipe.missedIngredients(), recipeNutrition.servings(), recipeNutrition.sourceUrl());
                     recipiesFull.add(updatedRecipie);
